@@ -19,29 +19,29 @@ There is plenty of methods of grouping but we don't need to look into them right
 We will still have the same problem where those groups meet.
 
 ```
-     A----B----C
-     |::::|::::|
-D----E----F----G
-|::::|::::|::::|
-H----I----J----K
+     A----B----C                          A---------C
+     |::::|::::|                          |:::::::::|
+D----E----F----G                     D----E:::::::::|
+|::::|::::|::::|                     |::::|:::::::::|
+H----I----J----K                     H----I---------K
 
-ABFE + BCFG + DEIH + EFJI + FGKJ -> ACKI + DEIH
+ABFE + BCFG + DEIH + EFJI + FGKJ   ->   ACKI + DEIH
 ```
 
 ### XORing
 
-Svg fill-rule 'even-odd' allows us to optimize amount of shapes to represent the 'self-intersecting' shapes, xoring them rather than unionizing.
+Svg fill-rule 'even-odd' allows us to optimize amount of shapes to represent the intersecting shapes, xoring them rather than unionizing.
 
 ```
-     A----B
-     |::::|
-C----D----E----F
-|::::|    |::::|
-G----H----I----J
-     |::::|
-     K----L
+     A----B                         A----B
+     |::::|                         |::::|
+C----D----E----F               C----+----+----F
+|::::|    |::::|               |::::|    |::::|
+G----H----I----J               G----+----+----J
+     |::::|                         |::::|
+     K----L                         K----L
 
-ABED + CDHG + EFJI + HILK -> ABLK x CFJG
+ABED + CDHG + EFJI + HILK   ->   ABLK x CFJG
 ```
 
 ### Shared corners
@@ -50,15 +50,42 @@ When two squares are sharing one corner we could draw them as single polygon omm
 Although we have to keep in mind the winding direction.
 
 ```
-B----C
-|::::|
-A----D----E
-     |::::|
-     G----F
+B----C             B----C
+|::::|             |::::|
+A----D----E        A----+----E
+     |::::|             |::::|
+     G----F             G----F
 
-ABCD + DEFG -> ABCGFE
+ABCD + DEFG   ->   ABCGFE
 ```
 
-##
+## Method
 
-## Cart
+### Cart
+
+cart ocupies 2x2 square and scans each underlying cell, it also have two states, searching and drawing.
+
+### Searching
+
+```
++----+----+
+|    |    |  LTR + wrap to next line
++----+----+  --->
+|    |    |
++----+----+
+```
+
+(front sensing) when searching it scans the pattern marking on the way visited locations, when one of covered cells is different then rest it switches to drawing state.
+
+### Drawing
+
+```
++----+----+                       +----+----+  +----+----+       +----+----+
+|    |    |  direction            |    |    |  |    |::::|       |    |::::|
++----+----+  --->                 +----+----+  +----+----+       +----+----+
+|::::|::::|  (h, -h, v, -v)       |::::|    |  |::::|::::|       |::::|    |
++----+----+                       +----+----+  +----+----+       +----+----+
+                                   rotate CW    rotate CCW         ignore
+```
+
+(back sensing) In drawing state it goes in direction and checks if one of covered cells is different then it inserts a path verticle and rotates in direction of odd cell. It's rotated until it get's back to initial position - then it switches to searching state
