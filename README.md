@@ -49,7 +49,7 @@ encapsulating all rectangles.
 This approach achieves ~50x smaller file and will display properly even if
 rendering engine doesn't support `shape-rendering: crispEdges`.
 
-|         |       qrcode-svg        |   qrcode-svg no-crisp    |     matrix-tracer    |
+|         |       qrcode-svg        |     w/o `crispEdges`     |     matrix-tracer    |
 | ------: | :---------------------: | :----------------------: | :------------------: |
 |  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/our.svg) |
 | `wc -c` |          69745          |          57946           |         1315         |
