@@ -46,7 +46,7 @@ Output of qrcode-svg uses `shape-rendering: crispEdges` style property on each
 would have no significant effect though if the style was applied to the group
 encapsulating all rectangles.
 
-Still this approach achieves ~50x smaller file and will display properly even if
+This approach achieves ~50x smaller file and will display properly even if
 rendering engine doesn't support `shape-rendering: crispEdges`.
 
 |         |       qrcode-svg        |   qrcode-svg no-crisp    |     svgQR output     |
