@@ -20,8 +20,9 @@ Utilizes 2x2 sensor with two states:
 - searching - scans matrix LTR looking for loose corner,
 - drawing - sliding along edges from corner to corner.
 
-This function needs to be provided with matrix dimmensions and `sensor(x, y)`
-function, so it can handle any matrix representation.
+This function needs to be provided with matrix dimmensions and
+`(x: number, y:number) => boolean` function, so it can handle any matrix
+representation.
 
 ## Pros
 
