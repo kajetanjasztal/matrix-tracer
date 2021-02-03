@@ -36,5 +36,5 @@ const pathFromQrCodeModules = (
   );
 };
 
-const content = "https://github.com/kajetanjasztal/svgQR";
+const content = "https://github.com/kajetanjasztal/matrix-tracer";
 console.log(pathFromQrCodeModules(content, 4, 120));
