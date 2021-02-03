@@ -12,8 +12,6 @@ const pathFromQrCodeModules = (
     padding,
     width: size,
     height: size,
-    color: "#000",
-    background: "#fff",
     ecl: "M",
   });
   qrcode.save("../outputs/native.svg");
@@ -25,7 +23,11 @@ const pathFromQrCodeModules = (
       modules.length + 2 * padding
     } ${
       modules.length + 2 * padding
-    }" width="${size}" height="${size}"><path style="fill-rule:evenodd" d="${generatePath(
+    }" width="${size}" height="${size}"><rect x="${-padding - 1}" y="${
+      -padding - 1
+    }" width="${size + (padding + 1) * 2}" height="${
+      size + (padding + 1) * 2
+    }" style="fill:#fff"/><path style="fill-rule:evenodd" d="${generatePath(
       modules.length,
       modules.length,
       (x, y) => modules[x][y]

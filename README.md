@@ -37,11 +37,11 @@ representation.
 
 ### Comparison
 
-|         | qrcode-svg output       | svgQR output         |
-| ------- | ----------------------- | -------------------- |
-| result  | ![](outputs/native.svg) | ![](outputs/our.svg) |
-| `wc -c` | 68434                   | 1251                 |
-| `du`    | 136                     | 8                    |
+|         |    qrcode-svg output    |     svgQR output     |
+| ------: | :---------------------: | :------------------: |
+|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |
+| `wc -c` |          69745          |         1315         |
+|    `du` |           144           |          8           |
 
 ## Further work
 
