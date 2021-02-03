@@ -24,6 +24,10 @@ This function needs to be provided with matrix dimmensions and
 `(x: number, y:number) => boolean` function, so it can handle any matrix
 representation.
 
+- `src/generatePath.ts` - provides main functionality, no dependiencies required
+- `src/index.ts` - provides example for comparison with
+  @https://github.com/papnkukn/qrcode-svg
+
 ### Pros
 
 - no dividing lines inside islands
@@ -37,11 +41,11 @@ representation.
 
 ### Comparison
 
-|         |    qrcode-svg output    |     svgQR output     |
-| ------: | :---------------------: | :------------------: |
-|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |
-| `wc -c` |          69745          |         1315         |
-|    `du` |           144           |          8           |
+|         |    qrcode-svg output    |     svgQR output     | qrcode-svg w/o `shape-rendering:crispEdges` |
+| ------: | :---------------------: | :------------------: | :-----------------------------------------: |
+|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |          @[](outputs/noCrisp.svg)           |
+| `wc -c` |          69745          |         1315         |                    57946                    |
+|    `du` |           144           |          8           |                     128                     |
 
 ## Further work
 
