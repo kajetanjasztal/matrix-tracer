@@ -53,7 +53,6 @@ rendering engine doesn't support `shape-rendering: crispEdges`.
 | ------: | :---------------------: | :----------------------: | :---------------------------: |
 |  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/matrixTracer.svg) |
 | `wc -c` |          89504          |          74168           |             1671              |
-|    `du` |           176           |           152            |               8               |
 
 ## Further work
 
