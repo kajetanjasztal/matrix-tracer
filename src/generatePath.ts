@@ -1,25 +1,16 @@
 const generatePath: (
   width: number,
   height: number,
-  isDark: (col: number, row: number) => boolean
-) => string = (width, height, isDark) => {
-  const sensor = ({ col, row }: { col: number; row: number }) => {
+  sensor: (x: number, y: number) => boolean
+) => string = (width, height, sensor) => {
+  const sensorWithPadding = ({ col, row }: { col: number; row: number }) => {
     if (col < 0) return 0;
     if (row < 0) return 0;
     if (col >= width) return 0;
     if (row >= height) return 0;
-    if (!isDark(col, row)) return 0;
+    if (!sensor(col, row)) return 0;
     return 1;
   };
-
-  const visited: boolean[] = new Array((width + 1) * (height + 1)).fill(false);
-  let motion: {
-    axis: "h" | "v";
-    direction: -1 | 1;
-    distance: number;
-  } | null = null;
-  let pathD: string = "";
-  let pos: { col: number; row: number } = { col: -1, row: 0 };
 
   const pos2index: ({ col, row }: { col: number; row: number }) => number = ({
     col,
@@ -30,13 +21,22 @@ const generatePath: (
     row,
   }) => {
     return (
-      (sensor({ col: col - 1, row: row - 1 }) ^
-        sensor({ col, row: row - 1 }) ^
-        sensor({ col: col - 1, row }) ^
-        sensor({ col, row })) ===
+      (sensorWithPadding({ col: col - 1, row: row - 1 }) ^
+        sensorWithPadding({ col, row: row - 1 }) ^
+        sensorWithPadding({ col: col - 1, row }) ^
+        sensorWithPadding({ col, row })) ===
       1
     );
   };
+
+  const visited: boolean[] = new Array((width + 1) * (height + 1)).fill(false);
+  let motion: {
+    axis: "h" | "v";
+    direction: -1 | 1;
+    distance: number;
+  } | null = null;
+  let pathD: string = "";
+  let pos: { col: number; row: number } = { col: -1, row: 0 };
 
   while (pos.row <= height) {
     if (!motion) {
@@ -55,7 +55,6 @@ const generatePath: (
       continue;
     }
 
-    // drawing
     pos = {
       col: motion.axis === "h" ? pos.col + motion.direction : pos.col,
       row: motion.axis === "v" ? pos.row + motion.direction : pos.row,
@@ -70,18 +69,19 @@ const generatePath: (
     }
 
     visited[pos2index(pos)] = true;
-    const spin: 1 | -1 =
-      motion.axis === "h"
-        ? sensor(pos) === sensor({ ...pos, col: pos.col - 1 })
-          ? -1
-          : 1
-        : sensor(pos) === sensor({ ...pos, row: pos.row - 1 })
-        ? -1
-        : 1;
     pathD += motion.axis + motion.distance;
     motion = {
       axis: motion.axis === "h" ? "v" : "h",
-      direction: spin,
+      direction:
+        sensorWithPadding(pos) ===
+        sensorWithPadding({
+          ...pos,
+          ...(motion.axis === "h"
+            ? { col: pos.col - 1 }
+            : { row: pos.row - 1 }),
+        })
+          ? -1
+          : 1,
       distance: 0,
     };
   }
