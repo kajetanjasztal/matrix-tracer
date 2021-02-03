@@ -1,91 +1,40 @@
-# Clear SVG QRcode redering
+# Clean SVG QRcode redering
 
-This repository is a proof of concept of optimal method of drawing QRcodes for anti-aliased rendering.
-It describes a method used and provides simple implementation based on string representation of qrcode.
+This is a proof-of-concept of an optimized construction of grid-based 2D
+barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
 
 ## Issue
 
-Most SVG outputs from QRcode generators renders each black cell as individual rectangle. This causes anti-aliasing
-issue resulting in single-pixel gray lines sepparating each cell and also resulting in bigger files than necessary.
+Most SVG outputs in QRcode generators treat each black cell as an individual
+rectangle. This causes anti-aliasing issue on shared edges, resulting in
+single-pixel gray lines sepparating neighbouring cells. This implementation
+solves this issue and should also result in smaller output file size.
 
-_Illustrations attached to this readme exagerates the issue with gray stroke._
+## This implementation
 
-## Ideas
+Function `generatePath` builds polygons around cells with vertical and
+horizontal segment of path element, assuming even-odd filling method.
 
-### Groupping
+Utilizes 2x2 sensor with two states:
 
-First of all we can optimize by combining groups of cells into bigger rectangles.
-There is plenty of methods of grouping but we don't need to look into them right now.
-We will still have the same problem where those groups meet.
+- searching - scans matrix LTR looking for loose corner,
+- drawing - sliding along edges from corner to corner.
 
-```
-     A----B----C                          A---------C
-     |::::|::::|                          |:::::::::|
-D----E----F----G                     D----E:::::::::|
-|::::|::::|::::|                     |::::|:::::::::|
-H----I----J----K                     H----I---------K
+This function needs to be provided with matrix dimmensions and `sensor(x, y)`
+function, so it can handle any matrix representation.
 
-ABFE + BCFG + DEIH + EFJI + FGKJ   ->   ACKI + DEIH
-```
+## Pros
 
-### XORing
+- no dividing lines inside islands
+- single path element
+- smaller output file
 
-Svg fill-rule 'even-odd' allows us to optimize amount of shapes to represent the intersecting shapes, xoring them rather than unionizing.
+## Cons
 
-```
-     A----B                         A----B
-     |::::|                         |::::|
-C----D----E----F               C----+----+----F
-|::::|    |::::|               |::::|    |::::|
-G----H----I----J               G----+----+----J
-     |::::|                         |::::|
-     K----L                         K----L
+- harder to manipulate cells to take advantage of error correction (logo
+  placement)
 
-ABED + CDHG + EFJI + HILK   ->   ABLK x CFJG
-```
+## Further work
 
-### Shared corners
-
-When two squares are sharing one corner we could draw them as single polygon ommiting entirely the shared verticle.
-Although we have to keep in mind the winding direction.
-
-```
-B----C             B----C
-|::::|             |::::|
-A----D----E        A----+----E
-     |::::|             |::::|
-     G----F             G----F
-
-ABCD + DEFG   ->   ABCGFE
-```
-
-## Method
-
-### Cart
-
-cart ocupies 2x2 square and scans each underlying cell, it also have two states, searching and drawing.
-
-### Searching
-
-```
-+----+----+
-|    |    |  LTR + wrap to next line
-+----+----+  --->
-|    |    |
-+----+----+
-```
-
-(front sensing) when searching it scans the pattern marking on the way visited locations, when one of covered cells is different then rest it switches to drawing state.
-
-### Drawing
-
-```
-+----+----+                       +----+----+  +----+----+       +----+----+
-|    |    |  direction            |    |    |  |    |::::|       |    |::::|
-+----+----+  --->                 +----+----+  +----+----+       +----+----+
-|::::|::::|  (h, -h, v, -v)       |::::|    |  |::::|::::|       |::::|    |
-+----+----+                       +----+----+  +----+----+       +----+----+
-                                   rotate CW    rotate CCW         ignore
-```
-
-(back sensing) In drawing state it goes in direction and checks if one of covered cells is different then it inserts a path verticle and rotates in direction of odd cell. It's rotated until it get's back to initial position - then it switches to searching state
+Find out what interface will be most suitable to be integrated with popular 2D
+barcodes generators.
