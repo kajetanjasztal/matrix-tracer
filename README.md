@@ -52,8 +52,8 @@ rendering engine doesn't support `shape-rendering: crispEdges`.
 |         |       qrcode-svg        |     w/o `crispEdges`     |         matrix-tracer         |
 | ------: | :---------------------: | :----------------------: | :---------------------------: |
 |  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/matrixTracer.svg) |
-| `wc -c` |          69745          |          57946           |             1315              |
-|    `du` |           144           |           128            |               8               |
+| `wc -c` |          89504          |          74168           |             1671              |
+|    `du` |           176           |           152            |               8               |
 
 ## Further work
 
