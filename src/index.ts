@@ -1,5 +1,6 @@
 import generatePath from "./generatePath";
 import * as fs from "fs";
+
 const QRCode = require("qrcode-svg");
 
 const pathFromQrCodeModules = (
@@ -37,4 +38,4 @@ const pathFromQrCodeModules = (
 };
 
 const content = "https://github.com/kajetanjasztal/matrix-tracer";
-console.log(pathFromQrCodeModules(content, 4, 120));
+pathFromQrCodeModules(content, 4, 120);
