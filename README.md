@@ -26,7 +26,7 @@ representation.
 
 - `src/generatePath.ts` - provides main functionality, no dependencies required
 - `src/index.ts` - provides example for comparison with
-  @https://github.com/papnkukn/qrcode-svg
+  [@papnkukn/qrcode-svg](https://github.com/papnkukn/qrcode-svg)
 
 ### Pros
 
