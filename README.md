@@ -1,4 +1,4 @@
-# Clean SVG QRcode redering
+# Clean SVG QRcode rendering
 
 This is a proof-of-concept of an optimized construction of grid-based 2D
 barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
@@ -7,7 +7,7 @@ barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
 
 Most SVG outputs in QRcode generators treat each black cell as an individual
 rectangle. This causes anti-aliasing issue on shared edges, resulting in
-single-pixel gray lines sepparating neighbouring cells. This implementation
+single-pixel gray lines separating adjacent cells. This implementation
 solves this issue and should also result in smaller output file size.
 
 ## This implementation
@@ -20,11 +20,11 @@ Utilizes 2x2 sensor with two states:
 - searching - scans matrix LTR looking for loose corner,
 - drawing - sliding along edges from corner to corner.
 
-This function needs to be provided with matrix dimmensions and
+This function needs to be provided with matrix dimensions and
 `(x: number, y:number) => boolean` function, so it can handle any matrix
 representation.
 
-- `src/generatePath.ts` - provides main functionality, no dependiencies required
+- `src/generatePath.ts` - provides main functionality, no dependencies required
 - `src/index.ts` - provides example for comparison with
   @https://github.com/papnkukn/qrcode-svg
 
