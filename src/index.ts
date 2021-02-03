@@ -1,52 +1,30 @@
 import generatePath from "./generatePath";
+import * as fs from "fs";
+const QRCode = require("qrcode-svg");
 
-const pathFromSquareString = (map: string) => {
-  const size = Math.sqrt(map.length);
-  if (size % 1 !== 0)
-    throw `not a square\nlength: ${map.length}\nsize: ${size}`;
-  console.log(
-    generatePath(size, size, (col: number, row: number) => {
-      if (map[row * size + col] !== " ") return true;
-      return false;
-    })
+const pathFromQrCodeModules = (
+  content: string,
+  padding: number,
+  size: number
+) => {
+  const qrcode = new QRCode(content);
+  qrcode.save("../outputs/native.svg");
+
+  const modules = qrcode.qrcode.modules;
+  fs.writeFile(
+    "../outputs/our.svg",
+    `<?xml version="1.0" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-${padding} -${padding} ${
+      modules.length + 2 * padding
+    } ${
+      modules.length + 2 * padding
+    }" width="${size}" height="${size}"><path style="fill-rule:evenodd" d="${generatePath(
+      modules.length,
+      modules.length,
+      (x, y) => modules[x][y]
+    )}" /></svg>`,
+    () => console.log("saved ours")
   );
 };
 
-pathFromSquareString(
-  "1   2    1" + // 1 - black cells in corners
-    "  3   4   " + // 2 - black colls on edges
-    " 33  4 4  " + // 3 - concave polygon
-    "          " + // 4 - self-intesection
-    "2      5  " + // 5 - intersection
-    "      5 5 " + // 6 - hole
-    "  666  5  " +
-    "  6 6    2" +
-    "  666     " +
-    "1     2  1"
-);
-
-pathFromSquareString(
-  "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########" +
-    "##########"
-);
-
-pathFromSquareString(
-  "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          " +
-    "          "
-);
+const content = "https://github.com/kajetanjasztal/svgQR";
+console.log(pathFromQrCodeModules(content, 4, 256));
