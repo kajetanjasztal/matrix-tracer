@@ -43,7 +43,7 @@ representation.
 
 |         |    qrcode-svg output    |     svgQR output     | qrcode-svg w/o `shape-rendering:crispEdges` |
 | ------: | :---------------------: | :------------------: | :-----------------------------------------: |
-|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |          @[](outputs/noCrisp.svg)           |
+|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |          ![](outputs/noCrisp.svg)           |
 | `wc -c` |          69745          |         1315         |                    57946                    |
 |    `du` |           144           |          8           |                     128                     |
 
