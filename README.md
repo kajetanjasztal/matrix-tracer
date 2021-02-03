@@ -41,11 +41,19 @@ representation.
 
 ### Comparison
 
-|         |    qrcode-svg output    |     svgQR output     | qrcode-svg w/o `shape-rendering:crispEdges` |
-| ------: | :---------------------: | :------------------: | :-----------------------------------------: |
-|  result | ![](outputs/native.svg) | ![](outputs/our.svg) |          ![](outputs/noCrisp.svg)           |
-| `wc -c` |          69745          |         1315         |                    57946                    |
-|    `du` |           144           |          8           |                     128                     |
+Output of qrcode-svg uses `shape-rendering: crispEdges` style property on each
+`rect` drawn which helps with the main issue. It increases file size by ~20%, it
+would have no significant effect though if the style was applied to the group
+encapsulating all rectangles.
+
+Still this approach achieves ~50x smaller file and will display properly even if
+rendering engine doesn't support `shape-rendering: crispEdges`.
+
+|         |       qrcode-svg        |   qrcode-svg no-crisp    |     svgQR output     |
+| ------: | :---------------------: | :----------------------: | :------------------: |
+|  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/our.svg) |
+| `wc -c` |          69745          |          57946           |         1315         |
+|    `du` |           144           |           128            |          8           |
 
 ## Further work
 
