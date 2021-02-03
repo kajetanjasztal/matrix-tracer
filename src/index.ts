@@ -18,7 +18,7 @@ const pathFromQrCodeModules = (
 
   const modules = qrcode.qrcode.modules;
   fs.writeFile(
-    "../outputs/our.svg",
+    "../outputs/matrixTracer.svg",
     `<?xml version="1.0" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-${padding} -${padding} ${
       modules.length + 2 * padding
     } ${

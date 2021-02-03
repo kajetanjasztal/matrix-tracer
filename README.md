@@ -7,8 +7,8 @@ barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
 
 Most SVG outputs in QRcode generators treat each black cell as an individual
 rectangle. This causes anti-aliasing issue on shared edges, resulting in
-single-pixel gray lines separating adjacent cells. This implementation
-solves this issue and should also result in smaller output file size.
+single-pixel gray lines separating adjacent cells. This implementation solves
+this issue and should also result in smaller output file size.
 
 ## This implementation
 
@@ -49,11 +49,11 @@ encapsulating all rectangles.
 This approach achieves ~50x smaller file and will display properly even if
 rendering engine doesn't support `shape-rendering: crispEdges`.
 
-|         |       qrcode-svg        |     w/o `crispEdges`     |     matrix-tracer    |
-| ------: | :---------------------: | :----------------------: | :------------------: |
-|  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/our.svg) |
-| `wc -c` |          69745          |          57946           |         1315         |
-|    `du` |           144           |           128            |          8           |
+|         |       qrcode-svg        |     w/o `crispEdges`     |         matrix-tracer         |
+| ------: | :---------------------: | :----------------------: | :---------------------------: |
+|  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/matrixTracer.svg) |
+| `wc -c` |          69745          |          57946           |             1315              |
+|    `du` |           144           |           128            |               8               |
 
 ## Further work
 
