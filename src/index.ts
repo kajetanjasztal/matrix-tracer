@@ -7,7 +7,15 @@ const pathFromQrCodeModules = (
   padding: number,
   size: number
 ) => {
-  const qrcode = new QRCode(content);
+  const qrcode = new QRCode({
+    content,
+    padding,
+    width: size,
+    height: size,
+    color: "#000",
+    background: "#fff",
+    ecl: "M",
+  });
   qrcode.save("../outputs/native.svg");
 
   const modules = qrcode.qrcode.modules;
@@ -22,9 +30,9 @@ const pathFromQrCodeModules = (
       modules.length,
       (x, y) => modules[x][y]
     )}" /></svg>`,
-    () => console.log("saved ours")
+    () => {}
   );
 };
 
 const content = "https://github.com/kajetanjasztal/svgQR";
-console.log(pathFromQrCodeModules(content, 4, 256));
+console.log(pathFromQrCodeModules(content, 4, 120));
