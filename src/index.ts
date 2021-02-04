@@ -28,11 +28,11 @@ const pathFromQrCodeModules = (
       -padding - 1
     }" width="${size + (padding + 1) * 2}" height="${
       size + (padding + 1) * 2
-    }" style="fill:#fff"/><path style="fill-rule:evenodd" d="${generatePath(
+    }" style="fill:#fff"/><path style="fill-rule:evenodd"\nd="${generatePath(
       modules.length,
       modules.length,
       (x, y) => modules[x][y]
-    )}" /></svg>`,
+    )}"/></svg>`,
     () => {}
   );
 };

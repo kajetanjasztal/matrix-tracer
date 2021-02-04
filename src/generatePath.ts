@@ -45,7 +45,7 @@ const generatePath: (
       if (visited.includes(position2index(position))) continue;
       if (!corner(position)) continue;
       visited.push(position2index(position));
-      path += `M${position.x} ${position.y}`;
+      path += `M${position.x}\n${position.y}`;
       tracing = { axis: "h", direction: 1, distance: 0 };
       continue;
     }
