@@ -1,5 +1,7 @@
 # Clean SVG QRcode rendering
 
+![](image.png)
+
 This is a proof-of-concept of an optimized construction of grid-based 2D
 barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
 
