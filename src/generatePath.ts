@@ -3,6 +3,11 @@ const generatePath: (
   height: number,
   sensor: (x: number, y: number) => boolean
 ) => string = (width, height, sensor) => {
+  const position2index: ({ x, y }: { x: number; y: number }) => number = ({
+    x,
+    y,
+  }) => x + y * (width + 1);
+
   const sensorWithPadding = ({ x, y }: { x: number; y: number }) => {
     if (x < 0) return 0;
     if (y < 0) return 0;
@@ -12,10 +17,6 @@ const generatePath: (
     return 1;
   };
 
-  const position2index: ({ x, y }: { x: number; y: number }) => number = ({
-    x,
-    y,
-  }) => x + y * (width + 1);
   const corner: ({ x, y }: { x: number; y: number }) => boolean = ({
     x,
     y,
@@ -29,7 +30,7 @@ const generatePath: (
     );
   };
 
-  const visited: boolean[] = new Array((width + 1) * (height + 1)).fill(false);
+  const visited: number[] = [];
   let tracing: {
     axis: "h" | "v";
     direction: -1 | 1;
@@ -37,38 +38,29 @@ const generatePath: (
   } | null = null;
   let path: string = "";
   let position: { x: number; y: number } = { x: -1, y: 0 };
-
   while (position.y <= height) {
     if (!tracing) {
       position = { ...position, x: position.x + 1 };
-      if (position.x > width) {
-        position = { x: 0, y: position.y + 1 };
-      }
-
-      if (visited[position2index(position)]) continue;
-      visited[position2index(position)] = true;
-
+      if (position.x > width) position = { x: 0, y: position.y + 1 };
+      if (visited.includes(position2index(position))) continue;
       if (!corner(position)) continue;
-
+      visited.push(position2index(position));
       path += `M${position.x} ${position.y}`;
       tracing = { axis: "h", direction: 1, distance: 0 };
       continue;
     }
-
     position = {
       x: tracing.axis === "h" ? position.x + tracing.direction : position.x,
       y: tracing.axis === "v" ? position.y + tracing.direction : position.y,
     };
     tracing.distance += tracing.direction;
     if (!corner(position)) continue;
-
-    if (visited[position2index(position)]) {
+    if (visited.includes(position2index(position))) {
       path += "z";
       tracing = null;
       continue;
     }
-
-    visited[position2index(position)] = true;
+    visited.push(position2index(position));
     path += tracing.axis + tracing.distance;
     tracing = {
       axis: tracing.axis === "h" ? "v" : "h",
