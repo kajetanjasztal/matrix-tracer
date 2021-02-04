@@ -3,89 +3,89 @@ const generatePath: (
   height: number,
   sensor: (x: number, y: number) => boolean
 ) => string = (width, height, sensor) => {
-  const sensorWithPadding = ({ col, row }: { col: number; row: number }) => {
-    if (col < 0) return 0;
-    if (row < 0) return 0;
-    if (col >= width) return 0;
-    if (row >= height) return 0;
-    if (!sensor(col, row)) return 0;
+  const sensorWithPadding = ({ x, y }: { x: number; y: number }) => {
+    if (x < 0) return 0;
+    if (y < 0) return 0;
+    if (x >= width) return 0;
+    if (y >= height) return 0;
+    if (!sensor(x, y)) return 0;
     return 1;
   };
 
-  const pos2index: ({ col, row }: { col: number; row: number }) => number = ({
-    col,
-    row,
-  }) => col + row * (width + 1);
-  const corner: ({ col, row }: { col: number; row: number }) => boolean = ({
-    col,
-    row,
+  const position2index: ({ x, y }: { x: number; y: number }) => number = ({
+    x,
+    y,
+  }) => x + y * (width + 1);
+  const corner: ({ x, y }: { x: number; y: number }) => boolean = ({
+    x,
+    y,
   }) => {
     return (
-      (sensorWithPadding({ col: col - 1, row: row - 1 }) ^
-        sensorWithPadding({ col, row: row - 1 }) ^
-        sensorWithPadding({ col: col - 1, row }) ^
-        sensorWithPadding({ col, row })) ===
+      (sensorWithPadding({ x: x - 1, y: y - 1 }) ^
+        sensorWithPadding({ x, y: y - 1 }) ^
+        sensorWithPadding({ x: x - 1, y }) ^
+        sensorWithPadding({ x, y })) ===
       1
     );
   };
 
   const visited: boolean[] = new Array((width + 1) * (height + 1)).fill(false);
-  let motion: {
+  let tracing: {
     axis: "h" | "v";
     direction: -1 | 1;
     distance: number;
   } | null = null;
-  let pathD: string = "";
-  let pos: { col: number; row: number } = { col: -1, row: 0 };
+  let path: string = "";
+  let position: { x: number; y: number } = { x: -1, y: 0 };
 
-  while (pos.row <= height) {
-    if (!motion) {
-      pos = { ...pos, col: pos.col + 1 };
-      if (pos.col > width) {
-        pos = { col: 0, row: pos.row + 1 };
+  while (position.y <= height) {
+    if (!tracing) {
+      position = { ...position, x: position.x + 1 };
+      if (position.x > width) {
+        position = { x: 0, y: position.y + 1 };
       }
 
-      if (visited[pos2index(pos)]) continue;
-      visited[pos2index(pos)] = true;
+      if (visited[position2index(position)]) continue;
+      visited[position2index(position)] = true;
 
-      if (!corner(pos)) continue;
+      if (!corner(position)) continue;
 
-      pathD += `M${pos.col},${pos.row}`;
-      motion = { axis: "h", direction: 1, distance: 0 };
+      path += `M${position.x} ${position.y}`;
+      tracing = { axis: "h", direction: 1, distance: 0 };
       continue;
     }
 
-    pos = {
-      col: motion.axis === "h" ? pos.col + motion.direction : pos.col,
-      row: motion.axis === "v" ? pos.row + motion.direction : pos.row,
+    position = {
+      x: tracing.axis === "h" ? position.x + tracing.direction : position.x,
+      y: tracing.axis === "v" ? position.y + tracing.direction : position.y,
     };
-    motion.distance += motion.direction;
-    if (!corner(pos)) continue;
+    tracing.distance += tracing.direction;
+    if (!corner(position)) continue;
 
-    if (visited[pos2index(pos)]) {
-      pathD += "z";
-      motion = null;
+    if (visited[position2index(position)]) {
+      path += "z";
+      tracing = null;
       continue;
     }
 
-    visited[pos2index(pos)] = true;
-    pathD += motion.axis + motion.distance;
-    motion = {
-      axis: motion.axis === "h" ? "v" : "h",
+    visited[position2index(position)] = true;
+    path += tracing.axis + tracing.distance;
+    tracing = {
+      axis: tracing.axis === "h" ? "v" : "h",
       direction:
-        sensorWithPadding(pos) ===
+        sensorWithPadding(position) ===
         sensorWithPadding({
-          ...pos,
-          ...(motion.axis === "h"
-            ? { col: pos.col - 1 }
-            : { row: pos.row - 1 }),
+          ...position,
+          ...(tracing.axis === "h"
+            ? { x: position.x - 1 }
+            : { y: position.y - 1 }),
         })
           ? -1
           : 1,
       distance: 0,
     };
   }
-  return pathD;
+  return path;
 };
 
 export default generatePath;

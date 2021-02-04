@@ -19,8 +19,8 @@ horizontal segment of path element, assuming even-odd filling method.
 
 Utilizes 2x2 sensor with two states:
 
-- searching - scans matrix LTR looking for loose corner,
-- drawing - sliding along edges from corner to corner.
+- scanning - scans matrix LTR looking for loose corner,
+- tracing - sliding along edges from corner to corner.
 
 This function needs to be provided with matrix dimensions and
 `(x: number, y:number) => boolean` function, so it can handle any matrix
