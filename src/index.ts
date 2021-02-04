@@ -1,7 +1,7 @@
 import generatePath from "./generatePath";
 import * as fs from "fs";
 
-const QRCode = require("qrcode-svg");
+import QRCode from "qrcode-svg";
 
 const pathFromQrCodeModules = (
   content: string,
@@ -15,11 +15,11 @@ const pathFromQrCodeModules = (
     height: size,
     ecl: "M",
   });
-  qrcode.save("../outputs/native.svg");
+  qrcode.save("outputs/qrcode-svg.svg", (error) => error && console.log(error));
 
   const modules = qrcode.qrcode.modules;
   fs.writeFile(
-    "../outputs/matrixTracer.svg",
+    "outputs/matrix-tracer.svg",
     `<?xml version="1.0" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-${padding} -${padding} ${
       modules.length + 2 * padding
     } ${
@@ -33,7 +33,7 @@ const pathFromQrCodeModules = (
       modules.length,
       (x, y) => modules[x][y]
     )}"/></svg>`,
-    () => {}
+    (error) => error && console.log(error)
   );
 };
 

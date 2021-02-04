@@ -1,9 +1,9 @@
-# Clean SVG QRcode rendering
-
-![](image.png)
+# matrix-tracer
 
 This is a proof-of-concept of an optimized construction of grid-based 2D
 barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
+
+![](image.png)
 
 ## Issue
 
@@ -15,7 +15,7 @@ this issue and should also result in smaller output file size.
 ## This implementation
 
 Function `generatePath` builds polygons around cells with vertical and
-horizontal segment of path element, assuming even-odd filling method.
+horizontal segment of path element, assuming `fill-rule: evenodd`.
 
 Utilizes 2x2 sensor with two states:
 
@@ -48,13 +48,13 @@ Output of qrcode-svg uses `shape-rendering: crispEdges` style property on each
 would have no significant effect though if the style was applied to the group
 encapsulating all rectangles.
 
-This approach achieves ~50x smaller file and will display properly even if
+This approach achieves ~50x smaller file which will display properly even if
 rendering engine doesn't support `shape-rendering: crispEdges`.
 
-|         |       qrcode-svg        |     w/o `crispEdges`     |         matrix-tracer         |
-| ------: | :---------------------: | :----------------------: | :---------------------------: |
-|  result | ![](outputs/native.svg) | ![](outputs/noCrisp.svg) | ![](outputs/matrixTracer.svg) |
-| `wc -c` |          89504          |          74168           |             1671              |
+|         |         qrcode-svg          |     w/o `crispEdges`      |         matrix-tracer          |
+| ------: | :-------------------------: | :-----------------------: | :----------------------------: |
+|  result | ![](outputs/qrcode-svg.svg) | ![](outputs/no-crisp.svg) | ![](outputs/matrix-tracer.svg) |
+| `wc -c` |            89504            |           74168           |              1671              |
 
 ## Further work
 
