@@ -130,17 +130,7 @@ saveTracedMatrix({
   ),
 });
 
-const alternate =
-  " # # # # #" +
-  "# # # # # " +
-  " # # # # #" +
-  "# # # # # " +
-  " # # # # #" +
-  "# # # # # " +
-  " # # # # #" +
-  "# # # # # " +
-  " # # # # #" +
-  "# # # # # ";
+const alternate = (" #".repeat(5) + "# ".repeat(5)).repeat(5);
 
 saveTracedMatrix({
   filename: "alternate",
@@ -156,7 +146,8 @@ saveTracedMatrix({
   ),
 });
 
-const withHole = alternate.repeat(4);
+const withHole = (" #".repeat(10) + "# ".repeat(10)).repeat(10);
+
 saveTracedMatrix({
   filename: "with-hole",
   width: Math.sqrt(withHole.length),
