@@ -83,25 +83,13 @@ const squareStringSensorWithHole = (matrix: string) => {
     Math.pow(x - (size - 1) / 2, 2) + Math.pow(y - (size - 1) / 2, 2) <
     Math.pow(size / 4, 2);
   const sensor = squareStringSensor(matrix);
-
   return (x: number, y: number) => {
     if (hole(x, y)) return false;
     return sensor(x, y);
   };
 };
 
-const full =
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########" +
-  "##########";
-
+const full = "#".repeat(100);
 saveTracedMatrix({
   filename: "full",
   width: Math.sqrt(full.length),
@@ -130,15 +118,14 @@ saveTracedMatrix({
   ),
 });
 
-const alternate = (" #".repeat(5) + "# ".repeat(5)).repeat(5);
-
+const alternate = (" #".repeat(10) + "# ".repeat(10)).repeat(10);
 saveTracedMatrix({
   filename: "alternate",
   width: Math.sqrt(alternate.length),
   height: Math.sqrt(alternate.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 1,
+  padding: 2,
   path: matrixTracer(
     Math.sqrt(alternate.length),
     Math.sqrt(alternate.length),
@@ -146,19 +133,17 @@ saveTracedMatrix({
   ),
 });
 
-const withHole = (" #".repeat(10) + "# ".repeat(10)).repeat(10);
-
 saveTracedMatrix({
   filename: "with-hole",
-  width: Math.sqrt(withHole.length),
-  height: Math.sqrt(withHole.length),
+  width: Math.sqrt(alternate.length),
+  height: Math.sqrt(alternate.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 1,
+  padding: 2,
   path: matrixTracer(
-    Math.sqrt(withHole.length),
-    Math.sqrt(withHole.length),
-    squareStringSensorWithHole(withHole)
+    Math.sqrt(alternate.length),
+    Math.sqrt(alternate.length),
+    squareStringSensorWithHole(alternate)
   ),
 });
 
@@ -173,7 +158,6 @@ const isolated =
   "2.555.6.6." +
   ".........." +
   "1.222222.1";
-
 saveTracedMatrix({
   filename: "isolated",
   width: Math.sqrt(isolated.length),
