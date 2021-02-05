@@ -156,17 +156,18 @@ saveTracedMatrix({
   ),
 });
 
+const withHole = alternate.repeat(4);
 saveTracedMatrix({
   filename: "with-hole",
-  width: Math.sqrt(alternate.length),
-  height: Math.sqrt(alternate.length),
+  width: Math.sqrt(withHole.length),
+  height: Math.sqrt(withHole.length),
   outputWidth: 128,
   outputHeight: 128,
   padding: 1,
   path: matrixTracer(
-    Math.sqrt(alternate.length),
-    Math.sqrt(alternate.length),
-    squareStringSensorWithHole(alternate)
+    Math.sqrt(withHole.length),
+    Math.sqrt(withHole.length),
+    squareStringSensorWithHole(withHole)
   ),
 });
 
