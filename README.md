@@ -78,6 +78,12 @@ Output files will be rendered to `example/svg/`.
 |  result | ![](example/svg/qrcode-svg.svg) | ![](example/svg/no-crisp.svg) | ![](example/svg/matrix-tracer.svg) |
 | `wc -c` |              89504              |             74168             |                1671                |
 
+### Other examples
+
+![full matrix](example/full.svg) ![empty matrix](example/empty.svg)
+![arternating black and white](example/alternate.svg)
+![hole made with sensor](example/with-hole.svg)
+
 ## Further work
 
 Find out what interface will be most suitable to be integrated with popular 2D
