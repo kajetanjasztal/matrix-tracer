@@ -57,7 +57,7 @@ matrix representation.
 
 - Harder to manipulate cells to take advantage of error correction, for example
   for logo placement. Although it can be easily achieved with proper `sensor`
-  function.
+  function - check out `squareStringSensorWithHole` in example.
 
 ### Example
 
