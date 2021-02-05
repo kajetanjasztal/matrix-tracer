@@ -80,9 +80,9 @@ Output files will be rendered to `example/svg/`.
 
 ### Other examples
 
-![full matrix](example/full.svg) ![empty matrix](example/empty.svg)
-![arternating black and white](example/alternate.svg)
-![hole made with sensor](example/with-hole.svg)
+![full matrix](example/svg/full.svg) ![empty matrix](example/svg/empty.svg)
+![arternating black and white](example/svg/alternate.svg)
+![hole made with sensor](example/svg/with-hole.svg)
 
 ## Further work
 
