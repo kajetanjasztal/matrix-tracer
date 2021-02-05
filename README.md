@@ -26,10 +26,6 @@ This function needs to be provided with matrix dimensions and
 `(x: number, y:number) => boolean` function, so it can handle any matrix
 representation.
 
-- `src/generatePath.ts` - provides main functionality, no dependencies required
-- `src/index.ts` - provides example for comparison with
-  [@papnkukn/qrcode-svg](https://github.com/papnkukn/qrcode-svg)
-
 ### Pros
 
 - no dividing lines inside islands
@@ -41,6 +37,11 @@ representation.
 - harder to manipulate cells to take advantage of error correction (logo
   placement)
 
+### Example
+
+You can check example in `example/ts/index.ts` and to run it use
+`npm run build && npm run example`. Output files are rendered to `example/svg/`.
+
 ### Comparison
 
 Output of qrcode-svg uses `shape-rendering: crispEdges` style property on each
@@ -51,10 +52,10 @@ encapsulating all rectangles.
 This approach achieves ~50x smaller file which will display properly even if
 rendering engine doesn't support `shape-rendering: crispEdges`.
 
-|         |         qrcode-svg          |     w/o `crispEdges`      |         matrix-tracer          |
-| ------: | :-------------------------: | :-----------------------: | :----------------------------: |
-|  result | ![](outputs/qrcode-svg.svg) | ![](outputs/no-crisp.svg) | ![](outputs/matrix-tracer.svg) |
-| `wc -c` |            89504            |           74168           |              1671              |
+|         |           qrcode-svg            |       w/o `crispEdges`        |           matrix-tracer            |
+| ------: | :-----------------------------: | :---------------------------: | :--------------------------------: |
+|  result | ![](example/svg/qrcode-svg.svg) | ![](example/svg/no-crisp.svg) | ![](example/svg/matrix-tracer.svg) |
+| `wc -c` |              89504              |             74168             |                1671                |
 
 ## Further work
 

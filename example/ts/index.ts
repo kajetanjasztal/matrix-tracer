@@ -1,4 +1,4 @@
-import generatePath from "./generatePath";
+import matrixTracer from "../../lib/matrix-tracer";
 import * as fs from "fs";
 
 import QRCode from "qrcode-svg";
@@ -15,11 +15,14 @@ const pathFromQrCodeModules = (
     height: size,
     ecl: "M",
   });
-  qrcode.save("outputs/qrcode-svg.svg", (error) => error && console.log(error));
+  qrcode.save(
+    "example/svg/qrcode-svg.svg",
+    (error) => error && console.log(error)
+  );
 
   const modules = qrcode.qrcode.modules;
   fs.writeFile(
-    "outputs/matrix-tracer.svg",
+    "example/svg/matrix-tracer.svg",
     `<?xml version="1.0" standalone="yes"?><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-${padding} -${padding} ${
       modules.length + 2 * padding
     } ${
@@ -28,7 +31,7 @@ const pathFromQrCodeModules = (
       -padding - 1
     }" width="${size + (padding + 1) * 2}" height="${
       size + (padding + 1) * 2
-    }" style="fill:#fff"/><path style="fill-rule:evenodd"\nd="${generatePath(
+    }" style="fill:#fff"/><path style="fill-rule:evenodd"\nd="${matrixTracer(
       modules.length,
       modules.length,
       (x, y) => modules[x][y]
