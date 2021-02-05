@@ -27,11 +27,11 @@ const saveTracedMatrix = ({
       height + 2 * padding
     }" width="${outputWidth ?? width}" height="${
       outputHeight ?? height
-    }"><rect x="${-1 - padding}" y="${-1 - (padding ?? 0)}" width="${
+    }"><rect\nx="${-1 - padding}" y="${-1 - (padding ?? 0)}" width="${
       width + (padding + 1) * 2
     }" height="${
       height + (padding + 1) * 2
-    }" style="fill:#fff"/><path style="fill-rule:evenodd"
+    }" style="fill:#fff"/><path\nstyle="fill-rule:evenodd"
     d="${path}"/></svg>`,
     (error) => error && console.log(error)
   );
