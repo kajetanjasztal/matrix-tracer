@@ -91,7 +91,6 @@ const squareStringSensorWithHole = (matrix: string) => {
 };
 
 const full =
-  "" +
   "##########" +
   "##########" +
   "##########" +
@@ -109,7 +108,7 @@ saveTracedMatrix({
   height: Math.sqrt(full.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 4,
+  padding: 1,
   path: matrixTracer(
     Math.sqrt(full.length),
     Math.sqrt(full.length),
@@ -123,7 +122,7 @@ saveTracedMatrix({
   height: Math.sqrt(full.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 4,
+  padding: 1,
   path: matrixTracer(
     Math.sqrt(full.length),
     Math.sqrt(full.length),
@@ -132,7 +131,6 @@ saveTracedMatrix({
 });
 
 const alternate =
-  "" +
   " # # # # #" +
   "# # # # # " +
   " # # # # #" +
@@ -150,7 +148,7 @@ saveTracedMatrix({
   height: Math.sqrt(alternate.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 4,
+  padding: 1,
   path: matrixTracer(
     Math.sqrt(alternate.length),
     Math.sqrt(alternate.length),
@@ -164,7 +162,7 @@ saveTracedMatrix({
   height: Math.sqrt(alternate.length),
   outputWidth: 128,
   outputHeight: 128,
-  padding: 4,
+  padding: 1,
   path: matrixTracer(
     Math.sqrt(alternate.length),
     Math.sqrt(alternate.length),
