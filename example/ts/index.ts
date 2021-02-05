@@ -21,18 +21,17 @@ const saveTracedMatrix = ({
 }) => {
   fs.writeFile(
     `example/svg/${filename.replace(/\.svg$/, "")}.svg`,
-    `<?xml version="1.0" standalone="yes"?><svg
-    xmlns="http://www.w3.org/2000/svg" version="1.1"
-    viewBox="-${padding} -${padding} ${width + 2 * padding} ${
-      height + 2 * padding
-    }" width="${outputWidth ?? width}" height="${
-      outputHeight ?? height
-    }"><rect\nx="${-1 - padding}" y="${-1 - (padding ?? 0)}" width="${
-      width + (padding + 1) * 2
-    }" height="${
-      height + (padding + 1) * 2
-    }" style="fill:#fff"/><path\nstyle="fill-rule:evenodd"
-    d="${path}"/></svg>`,
+    `<?xml version="1.0" standalone="yes"?><svg\n` +
+      `xmlns="http://www.w3.org/2000/svg" version="1.1"\n` +
+      `viewBox="-${padding} -${padding} ${width + 2 * padding} ${
+        height + 2 * padding
+      }" width="${outputWidth ?? width}" height="${
+        outputHeight ?? height
+      }"><rect\nx="${-1 - padding}" y="${-1 - (padding ?? 0)}" width="${
+        width + (padding + 1) * 2
+      }" height="${
+        height + (padding + 1) * 2
+      }" style="fill:#fff"/><path\nstyle="fill-rule:evenodd" d="${path}"/></svg>`,
     (error) => error && console.log(error)
   );
 };

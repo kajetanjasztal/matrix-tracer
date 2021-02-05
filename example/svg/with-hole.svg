@@ -1,9 +1,8 @@
 <?xml version="1.0" standalone="yes"?><svg
-    xmlns="http://www.w3.org/2000/svg" version="1.1"
-    viewBox="-2 -2 24 24" width="128" height="128"><rect
+xmlns="http://www.w3.org/2000/svg" version="1.1"
+viewBox="-2 -2 24 24" width="128" height="128"><rect
 x="-3" y="-3" width="26" height="26" style="fill:#fff"/><path
-style="fill-rule:evenodd"
-    d="M1
+style="fill-rule:evenodd" d="M1
 0h1v20h1v-20h1v20h1v-9h-5v1h6v1h-6v1h6v6h1v-6h1v6h1v-5h-9v1h20v1h-20v1h20v1h-20v1h1zM5
 0h1v7h-6v1h5zM7
 0h1v5h-8v1h7zM9
