@@ -76,7 +76,7 @@ Output files will be rendered to `example/svg/`.
 |         |           qrcode-svg            |       w/o `crispEdges`        |           matrix-tracer            |
 | ------: | :-----------------------------: | :---------------------------: | :--------------------------------: |
 |  result | ![](example/svg/qrcode-svg.svg) | ![](example/svg/no-crisp.svg) | ![](example/svg/matrix-tracer.svg) |
-| `wc -c` |              89504              |             74168             |                1671                |
+| `wc -c` |              89504              |             74168             |                1680                |
 
 ### Other examples
 
