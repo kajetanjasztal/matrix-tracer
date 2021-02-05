@@ -169,3 +169,29 @@ saveTracedMatrix({
     squareStringSensorWithHole(alternate)
   ),
 });
+
+const isolated =
+  "1.....22.1" + // 1 - corners
+  "..333....." + // 2 - edges
+  "2.3.3..4.." + // 3 - holes
+  "2.333.4.4." + // 4 - intersections
+  "2......4.." + // 5 - self intersections
+  "2..55....2" + // 6 - shared corners
+  "2.5.5..6.." +
+  "2.555.6.6." +
+  ".........." +
+  "1.222222.1";
+
+saveTracedMatrix({
+  filename: "isolated",
+  width: Math.sqrt(isolated.length),
+  height: Math.sqrt(isolated.length),
+  outputWidth: 128,
+  outputHeight: 128,
+  padding: 1,
+  path: matrixTracer(
+    Math.sqrt(isolated.length),
+    Math.sqrt(isolated.length),
+    squareStringSensorWithHole(isolated)
+  ),
+});

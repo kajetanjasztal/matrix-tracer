@@ -83,6 +83,7 @@ Output files will be rendered to `example/svg/`.
 ![full matrix](example/svg/full.svg) ![empty matrix](example/svg/empty.svg)
 ![arternating black and white](example/svg/alternate.svg)
 ![hole made with sensor](example/svg/with-hole.svg)
+![isolated tests](example/svg/isolated.svg)
 
 ## Further work
 
