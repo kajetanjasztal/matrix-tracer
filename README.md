@@ -44,19 +44,20 @@ Function `matrixTracer` utilizes 2x2 sensor with two states:
 - tracing - sliding along edges from corner to corner.
 
 This function needs to be provided with matrix dimensions and
-`(x: number, y:number) => boolean` function, so it can handle any matrix
-representation.
+`sensor = (x: number, y:number) => boolean` function, so it can handle any
+matrix representation.
 
 ### Pros
 
-- no dividing lines inside the islands
-- single path element
-- smaller output file
+- No dividing lines inside the islands
+- Single path element
+- Smaller output file
 
 ### Cons
 
-- harder to manipulate cells to take advantage of error correction (logo
-  placement)
+- Harder to manipulate cells to take advantage of error correction, for example
+  for logo placement. Although it can be easily achieved with proper `sensor`
+  function.
 
 ### Example
 
