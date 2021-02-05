@@ -39,8 +39,15 @@ representation.
 
 ### Example
 
-You can check example in `example/ts/index.ts` and to run it use
-`npm run build && npm run example`. Output files are rendered to `example/svg/`.
+You can check example in `example/ts/index.ts` and to run it use:
+
+```
+npm install
+npm run build
+npm run example
+```
+
+Output files will be rendered to `example/svg/`.
 
 ### Comparison
 
