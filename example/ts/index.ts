@@ -36,6 +36,21 @@ const saveTracedMatrix = ({
   );
 };
 
+const punchHoleInSensor = (
+  width: number,
+  height: number,
+  sensor: (x: number, y: number) => boolean,
+  relativeRadius: number = 0.5
+) => {
+  const hole: (x: number, y: number) => boolean = (x, y) =>
+    Math.pow(x - (width - 1) / 2, 2) + Math.pow(y - (height - 1) / 2, 2) <
+    Math.pow((Math.min(width, height) * relativeRadius) / 2, 2);
+  return (x: number, y: number) => {
+    if (hole(x, y)) return false;
+    return sensor(x, y);
+  };
+};
+
 const pathFromQrCodeModules = (
   content: string,
   padding: number,
@@ -63,6 +78,25 @@ const pathFromQrCodeModules = (
     outputHeight: size,
     path: matrixTracer(modules.length, modules.length, (x, y) => modules[x][y]),
   });
+
+  saveTracedMatrix({
+    filename: "qr-hole",
+    width: modules.length,
+    height: modules.length,
+    padding,
+    outputWidth: 128,
+    outputHeight: 128,
+    path: matrixTracer(
+      modules.length,
+      modules.length,
+      punchHoleInSensor(
+        modules.length,
+        modules.length,
+        (x, y) => modules[x][y],
+        0.3
+      )
+    ),
+  });
 };
 
 const content = "https://github.com/kajetanjasztal/matrix-tracer";
@@ -74,18 +108,6 @@ const squareStringSensor = (matrix: string, empty: string = " .") => {
   const size = Math.sqrt(matrix.length);
   if (size % 1 !== 0) throw "String is not a square matrix";
   return (x: number, y: number) => !empty.includes(matrix[x + size * y]);
-};
-
-const squareStringSensorWithHole = (matrix: string) => {
-  const size = Math.sqrt(matrix.length);
-  const hole: (x: number, y: number) => boolean = (x, y) =>
-    Math.pow(x - (size - 1) / 2, 2) + Math.pow(y - (size - 1) / 2, 2) <
-    Math.pow(size / 4, 2);
-  const sensor = squareStringSensor(matrix);
-  return (x: number, y: number) => {
-    if (hole(x, y)) return false;
-    return sensor(x, y);
-  };
 };
 
 const full = "#".repeat(100);
@@ -142,7 +164,11 @@ saveTracedMatrix({
   path: matrixTracer(
     Math.sqrt(alternate.length),
     Math.sqrt(alternate.length),
-    squareStringSensorWithHole(alternate)
+    punchHoleInSensor(
+      Math.sqrt(alternate.length),
+      Math.sqrt(alternate.length),
+      squareStringSensor(alternate)
+    )
   ),
 });
 

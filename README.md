@@ -57,7 +57,7 @@ matrix representation.
 
 - Harder to manipulate cells to take advantage of error correction, for example
   for logo placement. Although it can be easily achieved with proper `sensor`
-  function - check out `squareStringSensorWithHole` in example.
+  function - check out `punchHoleInSensor` in example.
 
 ### Example
 
@@ -85,6 +85,7 @@ _Results are rotated 3° to exaggerate aliasing._
 ![full matrix](example/svg/full.svg) ![empty matrix](example/svg/empty.svg)
 ![arternating black and white](example/svg/alternate.svg)
 ![hole made with sensor](example/svg/with-hole.svg)
+![hole punching in qr](example/svg/qr-hole.svg)
 ![isolated tests](example/svg/isolated.svg)
 
 ## Further work
