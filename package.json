@@ -11,7 +11,10 @@
   },
   "scripts": {
     "build": "tsc",
-    "example": "tsc -p example/tsconfig.json && node example/js && sed 's/shape-rendering:crispEdges;//g' example/svg/qrcode-svg.svg > example/svg/no-crisp.svg"
+    "example": "npm run generate && npm run no-crisp && npm run rotate",
+    "generate": "tsc -p example/tsconfig.json && node example/js",
+    "no-crisp": "sed 's/shape-rendering:crispEdges;//g' example/svg/qrcode-svg.svg > example/svg/no-crisp.svg",
+    "rotate": "for file in qrcode-svg no-crisp matrix-tracer; do sed -i '' 's/<svg/<svg transform=\"rotate(3 37 37)\"/' example/svg/${file}.svg; done"
   },
   "repository": {
     "type": "git",

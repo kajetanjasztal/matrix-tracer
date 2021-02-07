@@ -92,7 +92,3 @@ _Results are rotated 3° to exaggerate aliasing._
 
 Find out what interface will be most suitable to be integrated with popular 2D
 barcodes generators.
-
-<style>
-tr:first-of-type img {transform: rotate(3deg)}
-</style>
