@@ -22,7 +22,7 @@ with the main issue. It increases file size by ~20%, but it would have no
 significant effect if the style was applied to the group encapsulating all
 rectangles.
 
-### qrcode-table-svg
+### qrcode-svg-table
 
 [qrcode-svg-table](https://github.com/Diophant/qrcode-svg-table) provides a
 `join: true` option which draws cells inside a single path element. This seems
