@@ -66,7 +66,7 @@ const pathFromQrCodeModules = (
 };
 
 const content = "https://github.com/kajetanjasztal/matrix-tracer";
-pathFromQrCodeModules(content, 4, 120);
+pathFromQrCodeModules(content, 4, 61);
 
 // other examples
 
