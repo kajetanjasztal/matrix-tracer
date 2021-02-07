@@ -46,7 +46,7 @@ const pathFromQrCodeModules = (
     padding,
     width: size,
     height: size,
-    ecl: "M",
+    ecl: "H",
   });
   qrcode.save(
     "example/svg/qrcode-svg.svg",
@@ -66,7 +66,7 @@ const pathFromQrCodeModules = (
 };
 
 const content = "https://github.com/kajetanjasztal/matrix-tracer";
-pathFromQrCodeModules(content, 4, 61);
+pathFromQrCodeModules(content, 4, 74);
 
 // other examples
 
