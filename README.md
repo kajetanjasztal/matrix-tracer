@@ -18,16 +18,19 @@ this issue and should also result in smaller output file size.
 
 Output of [qrcode-svg](https://github.com/papnkukn/qrcode-svg) uses
 `shape-rendering: crispEdges` style property on each `rect` drawn which helps
-with the main issue. It increases file size by ~20%, but it would have no
-significant effect if the style was applied to the group encapsulating all
-rectangles.
+with the main issue (gray lines). But this property disables anti-aliasing for
+specified shapes relulting in jagged eddges on non-orthogonal edges (i.e.
+rotated). Also applying this property to each cell individualy increases file
+size by ~20%, but it would have no significant effect if the style was applied
+to the group encapsulating all rectangles.
 
 ### qrcode-svg-table
 
 [qrcode-svg-table](https://github.com/Diophant/qrcode-svg-table) provides a
-`join: true` option which draws cells inside a single path element. This seems
-to solve this issue, but islands are sitll being divided into separate squares,
-so it lean on rendering engine to draw it without the gaps.
+`join: true` option which draws cells inside a single path element, allowing it
+to render with anit-aliasing. This seems to solve this issue, but islands are
+sitll being divided into separate squares, so it lean on rendering engine to
+draw it without the gaps and file size is only slightly reduced.
 
 ## This implementation
 
