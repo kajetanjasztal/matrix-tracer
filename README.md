@@ -78,6 +78,9 @@ Output files will be rendered to `example/svg/`.
 |  result | ![](example/svg/qrcode-svg.svg) | ![](example/svg/no-crisp.svg) | ![](example/svg/matrix-tracer.svg) |
 | `wc -c` |              89504              |             74168             |                1668                |
 
+![zoom 6x](zoom6x.gif)  
+detail magnified 6x
+
 ### Other examples
 
 ![full matrix](example/svg/full.svg) ![empty matrix](example/svg/empty.svg)
