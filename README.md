@@ -78,7 +78,7 @@ Output files will be rendered to `example/svg/`.
 |  result | ![](example/svg/qrcode-svg.svg) | ![](example/svg/no-crisp.svg) | ![](example/svg/matrix-tracer.svg) |
 | `wc -c` |              89504              |             74168             |                1668                |
 
-![zoom 6x](zoom6x.gif)
+_Results are rotated 3° to exaggerate aliasing._
 
 ### Other examples
 
@@ -91,3 +91,7 @@ Output files will be rendered to `example/svg/`.
 
 Find out what interface will be most suitable to be integrated with popular 2D
 barcodes generators.
+
+<style>
+tr:first-of-type img {transform: rotate(3deg)}
+</style>
