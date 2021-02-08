@@ -83,6 +83,10 @@ Output files will be rendered to `example/svg/`.
 
 _Results are rotated 3° to exaggerate aliasing._
 
+#### Close-up
+
+![](zoomed.gif)
+
 ### Other examples
 
 ![full matrix](example/svg/full.svg) ![empty matrix](example/svg/empty.svg)
