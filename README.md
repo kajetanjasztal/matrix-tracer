@@ -28,7 +28,7 @@ to the group encapsulating all rectangles.
 
 [qrcode-svg-table](https://github.com/Diophant/qrcode-svg-table) provides a
 `join: true` option which draws cells inside a single path element, allowing it
-to render with anit-aliasing. This seems to solve this issue, but islands are
+to render with anti-aliasing. This seems to solve this issue, but islands are
 sitll being divided into separate squares, so it lean on rendering engine to
 draw it without the gaps and file size is only slightly reduced.
 

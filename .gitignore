@@ -2,3 +2,4 @@ js/
 lib/
 ignore/
 node_modules/
+*.bak
