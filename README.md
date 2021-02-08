@@ -3,7 +3,7 @@
 This is a proof-of-concept of an optimized construction of grid-based 2D
 barcodes (like QRcodes, DataMatrix, etc.) for anti-aliased rendering.
 
-![](image.png)
+![header image](img/image.png)
 
 ## Issue
 
@@ -85,7 +85,7 @@ _Results are rotated 3° to exaggerate aliasing._
 
 #### Close-up
 
-![](zoomed.gif)
+![gif cycling through close-ups of the results](img/zoomed.gif)
 
 ### Other examples
 
