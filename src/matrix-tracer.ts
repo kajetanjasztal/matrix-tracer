@@ -1,8 +1,9 @@
 const generatePath: (
   width: number,
   height: number,
-  sensor: (x: number, y: number) => boolean
-) => string = (width, height, sensor) => {
+  sensor: (x: number, y: number) => boolean,
+  rounding?: boolean
+) => string = (width, height, sensor, rounding = false) => {
   const position2index: ({ x, y }: { x: number; y: number }) => number = ({
     x,
     y,
@@ -45,7 +46,9 @@ const generatePath: (
       if (visited.includes(position2index(position))) continue;
       if (!corner(position)) continue;
       visited.push(position2index(position));
-      path += `M${position.x}\n${position.y}`;
+      path += rounding
+        ? `M${position.x}\n${position.y + 0.5}q0-.5 .5-.5`
+        : `M${position.x}\n${position.y}`;
       tracing = { axis: "h", direction: 1, distance: 0 };
       continue;
     }
@@ -61,7 +64,16 @@ const generatePath: (
       continue;
     }
     visited.push(position2index(position));
-    path += tracing.axis + tracing.distance;
+    if (rounding) {
+      path += tracing.axis + (tracing.distance - tracing.direction) + "q";
+      path +=
+        tracing.axis === "h" ? (tracing.direction < 0 ? "-.5" : ".5") : "0";
+      path +=
+        tracing.axis === "v" ? (tracing.direction < 0 ? "-.5" : " .5") : " 0";
+    } else {
+      path += tracing.axis + tracing.distance;
+    }
+    const repeat = tracing.direction < 0 ? "-.5" : " .5";
     tracing = {
       axis: tracing.axis === "h" ? "v" : "h",
       direction:
@@ -76,6 +88,11 @@ const generatePath: (
           : 1,
       distance: 0,
     };
+    if (rounding) {
+      path += tracing.axis === "v" ? repeat : "";
+      path += tracing.direction < 0 ? "-.5" : " .5";
+      path += tracing.axis === "h" ? repeat : "";
+    }
   }
   return path;
 };

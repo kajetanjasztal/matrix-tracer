@@ -193,6 +193,7 @@ saveTracedMatrix({
   path: matrixTracer(
     Math.sqrt(isolated.length),
     Math.sqrt(isolated.length),
-    squareStringSensor(isolated)
+    squareStringSensor(isolated),
+    true
   ),
 });
