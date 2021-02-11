@@ -1,5 +1,3 @@
-import matrixTracer from "../../lib/matrix-tracer";
-
 interface lifeSettings {
   width: number;
   height: number;
@@ -73,22 +71,4 @@ const createLife: (settings: lifeSettings) => life = ({
   };
 };
 
-const { width, height, sensor, updateLife } = createLife({
-  width: 20,
-  height: 8,
-  rule: "3/23",
-});
-
-const printLife = () => {
-  for (let y = 0; y < height; y++) {
-    const row: string[] = [];
-    for (let x = 0; x < width; x++) row.push(sensor(x, y) ? "#" : " ");
-    console.log(row.join(""));
-  }
-};
-
-const loop = setInterval(() => {
-  console.clear();
-  printLife();
-  updateLife();
-}, 40);
+export default createLife;
