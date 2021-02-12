@@ -95,6 +95,13 @@ _Results are rotated 3° to exaggerate aliasing._
 ![hole punching in qr](example/svg/qr-hole.svg)
 ![isolated tests](example/svg/isolated.svg)
 
+#### Rounded corners
+
+There is branch [`feat/rounded-corners`](/tree/feat/rounded-corners) that won't
+be merged here. Setting `rounding = true` will add quadratic bezier segments on
+path's corners. Also there is fun toy -- quick and dirty Conway's Game of Life
+traced, rounded and injected as svg into div with innerHTML.
+
 ## Further work
 
 Find out what interface will be most suitable to be integrated with popular 2D
