@@ -105,7 +105,7 @@ _Results are rotated 3° to exaggerate aliasing._
 npm run serve # requires static-server
 ```
 
-then open <http://localhost:9080/example/html/game.html>.
+then open <http://localhost:3517/example/html/game.html>.
 
 ## Further work
 
