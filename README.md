@@ -66,10 +66,11 @@ matrix representation.
 
 You can check example in `example/ts/index.ts` and to run it use:
 
-```
+```bash
 npm install
 npm run build
 npm run example
+npm run generate
 ```
 
 Output files will be rendered to `example/svg/`.
@@ -93,7 +94,18 @@ _Results are rotated 3° to exaggerate aliasing._
 ![arternating black and white](example/svg/alternate.svg)
 ![hole made with sensor](example/svg/with-hole.svg)
 ![hole punching in qr](example/svg/qr-hole.svg)
-![isolated tests](example/svg/isolated.svg)
+![smoothed isolated tests](example/svg/isolated.svg)
+
+#### smoothed game of life
+
+```bash
+# npm install
+# npm run build
+# npm run example
+npm run serve # requires static-server
+```
+
+then open <http://localhost:9080/example/html/game.html>.
 
 ## Further work
 
