@@ -12,8 +12,9 @@
   },
   "scripts": {
     "build": "tsc",
-    "example": "npm run generate && npm run no-crisp && npm run rotate",
-    "generate": "tsc -p example/tsconfig.json && node example/js",
+    "example": "tsc -p example/tsconfig.json",
+    "serve": "static-server -p 3517",
+    "generate": "node example/js && npm run no-crisp && npm run rotate",
     "no-crisp": "sed 's/shape-rendering:crispEdges;//g' example/svg/qrcode-svg.svg > example/svg/no-crisp.svg",
     "rotate": "cd example/svg; sed -i.bak 's/<svg/<svg transform=\"rotate(3 20 20)\"/' qrcode-svg.svg no-crisp.svg matrix-tracer.svg"
   },
