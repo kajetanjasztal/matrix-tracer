@@ -97,10 +97,13 @@ _Results are rotated 3° to exaggerate aliasing._
 
 #### Rounded corners
 
-There is branch [`feat/rounded-corners`](/tree/feat/rounded-corners) that won't
-be merged here. Setting `rounding = true` will add quadratic bezier segments on
-path's corners. Also there is fun toy -- quick and dirty Conway's Game of Life
-traced, rounded and injected as svg into div with innerHTML.
+There is branch
+[`feat/rounded-corners`](https://github.com/kajetanjasztal/matrix-tracer/tree/feat/rounded-corners)
+that won't be merged here. Setting `rounding = true` there will add quadratic
+bezier segments on path's corners.
+
+There is also quick and dirty Conway's Game of Life traced, rounded and injected
+as svg into div with innerHTML, runs smoothly enough and looks realy cool.
 
 ## Further work
 
