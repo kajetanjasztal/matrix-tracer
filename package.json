@@ -1,5 +1,6 @@
 {
   "name": "matrix-tracer",
+  "type": "module",
   "version": "1.0.0",
   "description": "Tracing method for creating pretty QRcodes in SVG",
   "main": "lib/matrix-tracer.js",

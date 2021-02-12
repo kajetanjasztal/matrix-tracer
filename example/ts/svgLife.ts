@@ -1,5 +1,5 @@
-import matrixTracer from "../../lib/matrix-tracer";
-import createLife from "./game-of-life";
+import matrixTracer from "../../lib/matrix-tracer.js";
+import createLife from "./game-of-life.js";
 
 const { width, height, sensor, updateLife } = createLife({
   width: 40,

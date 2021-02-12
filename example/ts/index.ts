@@ -1,4 +1,4 @@
-import matrixTracer from "../../lib/matrix-tracer";
+import matrixTracer from "../../lib/matrix-tracer.js";
 import * as fs from "fs";
 import QRCode from "qrcode-svg";
 
