@@ -76,7 +76,12 @@ const pathFromQrCodeModules = (
     padding,
     outputWidth: size,
     outputHeight: size,
-    path: matrixTracer(modules.length, modules.length, (x, y) => modules[x][y]),
+    path: matrixTracer(
+      modules.length,
+      modules.length,
+      (x, y) => modules[x][y],
+      true
+    ),
   });
 
   saveTracedMatrix({
@@ -94,7 +99,8 @@ const pathFromQrCodeModules = (
         modules.length,
         (x, y) => modules[x][y],
         0.3
-      )
+      ),
+      true
     ),
   });
 };
@@ -121,7 +127,8 @@ saveTracedMatrix({
   path: matrixTracer(
     Math.sqrt(full.length),
     Math.sqrt(full.length),
-    squareStringSensor(full)
+    squareStringSensor(full),
+    true
   ),
 });
 
@@ -135,7 +142,8 @@ saveTracedMatrix({
   path: matrixTracer(
     Math.sqrt(full.length),
     Math.sqrt(full.length),
-    squareStringSensor(full, "#")
+    squareStringSensor(full, "#"),
+    true
   ),
 });
 
@@ -150,7 +158,8 @@ saveTracedMatrix({
   path: matrixTracer(
     Math.sqrt(alternate.length),
     Math.sqrt(alternate.length),
-    squareStringSensor(alternate)
+    squareStringSensor(alternate),
+    true
   ),
 });
 
@@ -168,7 +177,8 @@ saveTracedMatrix({
       Math.sqrt(alternate.length),
       Math.sqrt(alternate.length),
       squareStringSensor(alternate)
-    )
+    ),
+    true
   ),
 });
 
