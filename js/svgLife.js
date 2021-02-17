@@ -7,7 +7,7 @@ const startLife = (id, fps) => {
         rule: "3/23",
         density: 0.2,
     });
-    const svgContent = () => `<svg viewBox="0 0 ${width} ${height}" width="${600}" height="${400}">` +
+    const svgContent = () => `<svg viewBox="0 0 ${width} ${height}">` +
         `<path\nstyle="fill:#5eb;fill-rule:evenodd" ` +
         `d="${matrixTracer(width, height, sensor, true)}"/></svg>`;
     const container = document.getElementById(id);

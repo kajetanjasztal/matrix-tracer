@@ -1,4 +1,4 @@
-<body>
+<meta name="viewport" content= "width=device-width, initial-scale=1.0"> 
 <script type="module">
   import startLife from "./js/svgLife.js";
   let stopLife = null;
@@ -11,21 +11,9 @@
 <button id="start">start life</button>
 <div id="svg"></div>
 <style>
-body {background: #222}
-#svg, #start {
-  display: block;
-  background: #303437;
-  max-width: 80vw;
-  color: #eed;
-  width: max-content;
-  padding: 0;
-  margin: 50px auto 0;
-  font-family: monospace;
-  overflow: hidden;
-  border-radius: 5px;
-  border: none;
-}
-#start {padding: 10px};
-div * {width: 100%}
+body {background:#222}
+#svg, #start {background:#303437;width:max-content;margin:50px auto 0;border-radius: 5px}
+#svg {overflow:hidden;padding:0}
+#start {padding:10px;font-size:4mm;font-family: monospace;color:#eed;border:none;display:block}
+svg {width:600px;max-width:80vw}
 </style>
-</body>
