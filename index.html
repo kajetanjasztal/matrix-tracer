@@ -3,12 +3,18 @@
   import startLife from "./js/svgLife.js";
   let stopLife = null;
   const reload = () => {
-    if (stopLife !== null) stopLife();
+    if (stopLife !== null) {
+       stopLife();
+       stopLife = null
+       document.getElementById("start").innerHTML = "new life";
+       return;
+    }
     stopLife = startLife("svg", 45);
+    document.getElementById("start").innerHTML = "end life";
   };
   document.getElementById("start").onclick = reload;
 </script>
-<button id="start">start life</button>
+<button id="start">new life</button>
 <div id="svg"></div>
 <style>
 body {background:#222}
