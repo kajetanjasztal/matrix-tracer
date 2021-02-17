@@ -4,7 +4,7 @@
   let stopLife = null;
   const reload = () => {
     if (stopLife !== null) stopLife();
-    stopLife = startLife("svg", 100);
+    stopLife = startLife("svg", 45);
   };
   document.getElementById("start").onclick = reload;
 </script>
